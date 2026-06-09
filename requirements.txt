@@ -1,0 +1,5 @@
+boto3
+botocore
+dotenv
+trino
+psycopg2-binary

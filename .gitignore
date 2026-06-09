@@ -1,0 +1,11 @@
+# Ne pas envoyer les données locales de MinIO ou Trino
+minio-data/
+trino-catalog/
+.data/
+
+# Ne pas envoyer les variables d'environnement contenant des mots de passe
+.env
+venv/
+
+# Ignorer les logs
+*.log

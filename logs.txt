@@ -1,0 +1,33 @@
+
+	at io.trino.server.TrinoServer.main(TrinoServer.java:37)
+
+
+postgres-server
+
+.............2026-06-08 16:46:48.321 UTC [57] LOG:  checkpoint complete: wrote 943 buffers (5.8%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.170 s, sync=13.021 s, total=13.571 s; sync files=303, longest=0.523 s, average=0.043 s; distance=4352 kB, estimate=4352 kB; lsn=0/1B9FBA8, redo lsn=0/1B9FBA8
+
+2026-06-08 16:46:48.391 UTC [53] LOG:  database system is shut down
+
+ done
+
+server stopped
+
+
+PostgreSQL init process complete; ready for start up.
+
+
+2026-06-08 16:46:48.647 UTC [1] LOG:  starting PostgreSQL 18.4 (Debian 18.4-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+
+2026-06-08 16:46:48.648 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+
+2026-06-08 16:46:48.648 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+
+2026-06-08 16:46:48.787 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+
+2026-06-08 16:46:48.982 UTC [75] LOG:  database system was shut down at 2026-06-08 16:46:48 UTC
+
+2026-06-08 16:46:49.059 UTC [1] LOG:  database system is ready to accept connections
+
+2026-06-08 16:51:49.061 UTC [73] LOG:  checkpoint starting: time
+
+2026-06-08 16:51:53.714 UTC [73] LOG:  checkpoint complete: wrote 43 buffers (0.3%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=4.377 s, sync=0.166 s, total=4.653 s; sync files=12, longest=0.027 s, average=0.014 s; distance=318 kB, estimate=318 kB; lsn=0/1BEF668, redo lsn=0/1BEF610
