@@ -6,6 +6,7 @@ trino-catalog/
 # Ne pas envoyer les variables d'environnement contenant des mots de passe
 .env
 venv/
+venv1/
 
 # Ignorer les logs
 *.log
