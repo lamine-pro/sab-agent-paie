@@ -3,3 +3,19 @@ botocore
 dotenv
 trino
 psycopg2-binary
+loguru
+
+# Processing pipeline dependencies
+
+# Mistral (OCR + Chat)
+mistralai
+langchain-mistralai
+
+# LangChain core
+langchain
+langchain-core
+
+# Embedding + Pinecone
+pinecone-client
+langchain-pinecone
+langchain-text-splitters

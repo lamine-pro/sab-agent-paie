@@ -19,7 +19,7 @@ load_dotenv()
 
 class MinIOStorage:
     def __init__(self):
-        self.endpoint  = os.getenv("MINIO_ENDPOINT", "http://minio:9000")
+        self.endpoint  = os.getenv("MINIO_ENDPOINT", "http://localhost:9000")
         self.access_key = os.getenv("MINIO_ROOT_USER", "minioadmin")
         self.secret_key = os.getenv("MINIO_ROOT_PASSWORD", "minioadmin123")
         self.client = self._build_client()
@@ -129,7 +129,7 @@ class MinIOStorage:
 
     def build_object_key(self, filename: str, file_type: str) -> str:
         """
-        Construit le chemin de stockage dans Bronze.
+        Construit le chemin de stockage dans raw-data.
         Convention : {file_type}/{filename}
         Ex : pdf/rapport_annuel_2023.pdf
         """

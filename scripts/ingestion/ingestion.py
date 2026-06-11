@@ -8,15 +8,15 @@ from datetime import datetime
 from pathlib import Path
 from loguru import logger
 from dotenv import load_dotenv
-from storage import MinIOStorage
-from trino_client import TrinoClient
+from ingestion.storage import MinIOStorage
+from lakehouse.trino_client import TrinoClient
 import sys
 import argparse
 from pathlib import Path
 
 load_dotenv()
 
-BUCKET = "raw"
+BUCKET = "raw-data"
 
 
 class IngestionPipeline:
@@ -68,13 +68,16 @@ class IngestionPipeline:
         )
         logger.info(f"  ingestion_log → id={ingestion_id[:8]}...")
 
+        return {"status": "success", "ingestion_id": ingestion_id, "filename": filename}
+
+
  # ── Étapes internes ───────────────────────────────────────────
 
     def _is_duplicate(self, file_hash: str) -> bool:
         """Vérifie si un fichier avec ce hash existe déjà."""
         rows = self.trino.execute(
             f"""
-            SELECT COUNT(*) FROM minio.raw.ingestion_log
+            SELECT COUNT(*) FROM iceberg.raw.ingestion_log
             WHERE file_hash = '{file_hash}'
               AND status != 'failed'
             """,
@@ -97,15 +100,16 @@ class IngestionPipeline:
         now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
         self.trino.execute(f"""
             INSERT INTO iceberg.raw.ingestion_log VALUES (
-                '{ingestion_id}',
-                '{filename}',
-                '{file_path}',
-                '{file_type}',
-                {file_size},
-                '{file_hash}',
-                '{source_system}',
-                TIMESTAMP '{now}',
-                '{status}'
+                CAST('{ingestion_id}'  AS VARCHAR),
+                CAST('{filename}'      AS VARCHAR),
+                CAST('{file_path}'     AS VARCHAR),
+                CAST('{file_type}'     AS VARCHAR),
+                CAST({file_size}       AS BIGINT),
+                CAST('{file_hash}'     AS VARCHAR),
+                CAST('{source_system}' AS VARCHAR),
+                CAST('{status}'        AS VARCHAR),
+                CAST('{now}'           AS TIMESTAMP(6))
+                
             )
         """)
 
